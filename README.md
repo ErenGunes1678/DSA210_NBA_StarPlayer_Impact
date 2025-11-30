@@ -48,24 +48,61 @@ The dataset will be cleaned to:
 ---
 
 ## Data Analysis Plan
-The analysis will focus on:
 
-- **Correlation Measurement**  
-  - How strongly a star player's performance correlates with team wins or losses.  
+The analysis combines **completed work so far** and **planned future steps**:
 
-- **Performance Comparison**  
-  - Comparing team win rates when the star performs above vs. below their average stats.  
+- **Correlation Analysis (completed)**  
+  - Measure how strongly star performance metrics (points, rebounds, assists, points share, etc.) correlate with team point differential and win/loss outcomes.
 
-- **Visualization**  
-- Using **statistical and visualization techniques** to illustrate how individual player impact varies between stars and across teams
+- **Performance Comparison (completed)**  
+  - Compare team win rates when a star player scores **above** vs. **below** their typical (median) point total.  
+  - Compare average star points in games their team **wins** versus games they **lose** using formal hypothesis tests.
+
+- **Hypothesis Testing (completed)**  
+  - Two-proportion z-test for the difference in win rate between high-scoring and low-scoring star games.  
+  - Welch two-sample t-test for the difference in average star points between wins and losses.
+
+- **Visualization (completed and ongoing)**  
+  - Use histograms, boxplots and correlation heatmaps to visualize how individual star performance relates to game outcomes.  
+  - Highlight differences between selected stars in terms of distribution of points and contribution to team scoring (points share).
+
+- **Extended Modeling (planned)**  
+  - Build predictive models (e.g., logistic regression) to estimate win probability as a function of star and team statistics.  
+  - Compare model performance when using only star statistics versus using broader team statistics to understand how “star-dependent” different teams are.
 
 ---
 
-## Expected Findings  
-- Star players likely have a measurable influence on win probability.  
-- However, the **degree of dependence** may vary – some teams rely heavily on one player, while others perform well through teamwork.  
-- Stats like **assists, efficiency, and turnovers** may predict success better than just total points.  
-- Balanced teams may maintain wins even when their star player underperforms.  
+## Preliminary Results (So Far)
+
+Based on the current dataset and analysis of selected star players (LeBron James, Stephen Curry, Kevin Durant, James Harden, Nikola Jokić):
+
+- Teams win about **69%** of games when their star scores **above** their own median point total, compared to about **62%** when the star scores **below** the median.  
+  - A two-proportion z-test shows this difference (≈ **6.9 percentage points**) is **statistically significant** (p-value ≈ 4.96 × 10⁻⁷).
+
+- Star players score on average about **26.3 points** in games their team **wins** and about **23.9 points** in games their team **loses**.  
+  - A Welch t-test indicates this difference (≈ **2.4 points**) is also **statistically significant** (p-value ≈ 1.21 × 10⁻¹⁶).
+
+These preliminary results provide quantitative evidence that higher individual scoring by star players is associated with both higher win probability and higher average scoring in wins.
+
+---
+
+## Expected Findings (Updated)
+
+The project is still in progress, but based on the initial analysis and planned next steps, the expected findings are:
+
+- **Star players do have a measurable influence on win probability.**  
+  The current tests already show that when a star scores more than usual, their team’s chance of winning increases.
+
+- The **degree of dependence** on a single star is likely to vary by team and context.  
+  Some teams might be highly sensitive to star scoring, while more balanced teams may rely less on a single player.
+
+- While total points are clearly important, additional metrics such as **shooting efficiency**, **assists** and **turnovers** may further improve the prediction of game outcomes.  
+  These variables will be explored in later stages using correlation analysis and predictive models.
+
+- **Balanced teams** may be able to maintain a relatively high win rate even when their star underperforms, whereas star-centric teams may experience larger drops in win probability when their main scorer has a low-impact game.
+
+These expectations will be refined and tested as more players, metrics and modeling approaches are incorporated into the analysis.
+
 
 ---
 
