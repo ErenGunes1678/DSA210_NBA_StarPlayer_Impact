@@ -135,7 +135,7 @@ A key expected finding is that some teams are more star dependent than others. F
 Beyond total points, the expected outcome is that shooting efficiency (FG%, 3P%, FT%) and negative contributions like turnovers will meaningfully affect win prediction. This aligns with real basketball intuition: a star scoring 30 points on very poor efficiency or with many turnovers may not increase win probability as much as a more efficient performance.
 
 ### Overall takeaway
-Combining both approaches, the project is expected to conclude that star players do have a statistically measurable and predictively meaningful impact on game outcomes. However, machine learning comparisons should also show that including team-level context improves predictions, supporting the more balanced conclusion: star performance is an important factor, but it is not the only determinant of winning.
+Combining both approaches, the project is expected to conclude that star players do have a statistically measurable and predictively meaningful impact on game outcomes. However, machine learning comparisons should also show that including team level context improves predictions, supporting the more balanced conclusion: star performance is an important factor, but it is not the only determinant of winning.
 
 
 ---
