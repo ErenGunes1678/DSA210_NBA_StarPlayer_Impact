@@ -51,22 +51,22 @@ The dataset will be cleaned to:
 
 The analysis combines **completed work so far** and **planned future steps**:
 
-- **Correlation Analysis (completed)**  
+- **Correlation Analysis**  
   - Measure how strongly star performance metrics (points, rebounds, assists, points share, etc.) correlate with team point differential and win/loss outcomes.
 
-- **Performance Comparison (completed)**  
+- **Performance Comparison**  
   - Compare team win rates when a star player scores **above** vs. **below** their typical (median) point total.  
   - Compare average star points in games their team **wins** versus games they **lose** using formal hypothesis tests.
 
-- **Hypothesis Testing (completed)**  
+- **Hypothesis Testing**  
   - Two-proportion z-test for the difference in win rate between high-scoring and low-scoring star games.  
   - Welch two-sample t-test for the difference in average star points between wins and losses.
 
-- **Visualization (completed and ongoing)**  
+- **Visualization**  
   - Use histograms, boxplots and correlation heatmaps to visualize how individual star performance relates to game outcomes.  
   - Highlight differences between selected stars in terms of distribution of points and contribution to team scoring (points share).
 
-- **Extended Modeling (completed)**  
+- **Extended Modeling**  
   - Built supervised ML classification models to predict `star_team_win` (win/loss from the star’s team perspective).  
   - Implemented and compared a Dummy (majority-class) baseline, Logistic Regression, Decision Tree, and k-Nearest Neighbors (kNN).  
   - Compared three feature sets:  
@@ -104,6 +104,9 @@ To complement hypothesis testing, I framed the problem as a binary classificatio
 
 **Key result:** The trained ML models outperform the Dummy baseline and achieve high ROC-AUC on validation/test, especially when using ST features. This supports the conclusion that star performance has meaningful predictive signal, and adding team-level context improves predictive power further.
 
+<img width="920" height="123" alt="image" src="https://github.com/user-attachments/assets/0609faea-8f9f-49ef-b936-9708fd084b1c" />
+
+- For Final LogReg(ST), the model correctly predicts 69 wins and 45 losses, with 15 false-win and 8 false-loss errors on the test set.
 ---
 
 ## Findings
@@ -117,16 +120,16 @@ The early hypothesis tests suggest that when a star player performs better than 
 The second hypothesis test indicates that star players score more points on average in games their team wins compared to games their team loses. This reinforces the idea that star performance (especially scoring) is associated with team success, even though it is not the only factor.
 
 ### 3) Machine learning models should predict wins better than a naive baseline
-In the ML stage, a DummyClassifier baseline (predicting the majority outcome) provides a “minimum performance” reference point. The expectation is that real supervised learning models (Logistic Regression, Decision Tree, kNN) will outperform this baseline using star statistics, showing that the relationship between star performance and winning can be captured predictively, not only through hypothesis tests.
+In the ML stage, a DummyClassifier baseline (predicting the majority outcome) provides a minimum performance reference point. The expectation is that real supervised learning models (Logistic Regression, Decision Tree, kNN) will outperform this baseline using star statistics, showing that the relationship between star performance and winning can be captured predictively, not only through hypothesis tests.
 
-### 4) Star-only features will already contain meaningful predictive signal
-Even when using only star box-score features (S) or star features plus simple context like home/away and season (SC), the models are expected to achieve strong performance (higher ROC-AUC and balanced accuracy than the dummy baseline). This would imply that a single star’s output (points, assists, rebounds, minutes, efficiency, turnovers) contains enough information to meaningfully estimate win probability.
+### 4) Star only features will already contain meaningful predictive signal
+Even when using only star box score features (S) or star features plus simple context like home/away and season (SC), the models are expected to achieve strong performance (higher ROC-AUC and balanced accuracy than the dummy baseline). This would imply that a single star’s output (points, assists, rebounds, minutes, efficiency, turnovers) contains enough information to meaningfully estimate win probability.
 
-### 5) Adding team-level totals will further improve prediction, showing teamwork still matters
-When the models include team-level totals and share-based variables (ST), predictive performance is expected to improve further. This does not contradict “star impact”; instead, it suggests that while star performance is important, the overall team context (total scoring, team rebounds/assists, etc.) strengthens the explanation of game results. In other words, star performance matters, but it works within a broader team system.
+### 5) Adding team level totals will further improve prediction, showing teamwork still matters
+When the models include team level totals and share based variables (ST), predictive performance is expected to improve further. This does not contradict star impact; instead, it suggests that while star performance is important, the overall team context (total scoring, team rebounds/assists, etc.) strengthens the explanation of game results. In other words, star performance matters, but it works within a broader team system.
 
 ### 6) Dependence on a single star likely varies by team and game context
-A key expected finding is that some teams are more “star-dependent” than others. For example, teams where the star contributes a larger fraction of team scoring (higher points share) may show a bigger drop in win probability when the star underperforms. More balanced teams may maintain stronger win chances even when the star has a lower-impact game.
+A key expected finding is that some teams are more star dependent than others. For example, teams where the star contributes a larger fraction of team scoring (higher points share) may show a bigger drop in win probability when the star underperforms. More balanced teams may maintain stronger win chances even when the star has a lower-impact game.
 
 ### 7) Efficiency and mistakes (turnovers) should be important alongside raw points
 Beyond total points, the expected outcome is that shooting efficiency (FG%, 3P%, FT%) and negative contributions like turnovers will meaningfully affect win prediction. This aligns with real basketball intuition: a star scoring 30 points on very poor efficiency or with many turnovers may not increase win probability as much as a more efficient performance.
@@ -149,8 +152,29 @@ Combining both approaches, the project is expected to conclude that star players
 
 ## Tools & Technologies  
 - **Programming Language:** Python  
-- **Libraries:** pandas, numpy, matplotlib, seaborn, scikit-learn  
-- **Environment:** Jupyter Notebook  
+
+- **Core Data Libraries:**  
+  - pandas, numpy (data loading, cleaning, feature engineering)
+
+- **Statistical Analysis:**  
+  - scipy (hypothesis testing: z-test, Welch t-test)
+
+- **Visualization:**  
+  - matplotlib, seaborn (histograms, boxplots, correlation heatmaps, evaluation plots)
+
+- **Machine Learning (ML):**  
+  - scikit-learn  
+  - preprocessing: SimpleImputer, StandardScaler  
+  - pipelines: Pipeline, ColumnTransformer  
+  - models: DummyClassifier, LogisticRegression, DecisionTreeClassifier, KNeighborsClassifier  
+  - evaluation: accuracy, precision, recall, F1-score, confusion matrix, ROC-AUC
+
+- **Data Source Access:**  
+  - kagglehub (downloading the NBA dataset programmatically)
+
+- **Environment:** Jupyter Notebook (Google Colab compatible)  
+
 - **Version Control:** Git & GitHub  
+
 
 ---
